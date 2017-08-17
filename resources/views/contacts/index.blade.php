@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 101 Template</title>
+    <title>Address Book</title>
 
     <!-- Bootstrap -->
     <link href="/css/app.css" rel="stylesheet">
@@ -28,7 +28,7 @@
                   <th>Name</th>
                   <th>Phone</th>
                   <th>Email</th>
-                  <th>Actions</th>
+                  <th colspan="2">Actions</th>
                 </tr>
 
                 @foreach($contacts as $contact)
@@ -37,8 +37,14 @@
                     <td>{{ $contact->phone }}</td>
                     <td>{{ $contact->email }}</td>
                     <td>
-                      <a href="#">Edit</a> | 
-                      <a href="#">Delete</a>
+                      <a href="#">Edit</a> 
+                    </td>
+                    <td>
+                      <form method="POST" action="{{ route('contacts.destroy', $contact)}}">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" style="padding:0" class="btn btn-link">Delete</button>                        
+                      </form>
                     </td>
                   </tr>
                 @endforeach

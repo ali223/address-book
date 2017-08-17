@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', 'ContactsController@index')->name('contacts.index');
+Route::get('/', 'ContactsController@index')->name('home');
 
-Route::post('/', 'ContactsController@store')->name('contacts.store');
+Route::get('/contacts', 'ContactsController@index')->name('contacts.index');
+
+Route::post('/contacts', 'ContactsController@store')->name('contacts.store');
+
+Route::delete('/contacts/{contact}', 'ContactsController@destroy')->name('contacts.destroy');
