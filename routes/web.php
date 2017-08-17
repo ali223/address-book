@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'ContactsController@index');
+Route::get('/', 'ContactsController@index')->name('contacts.index');
+
+Route::post('/', 'ContactsController@store')->name('contacts.store');

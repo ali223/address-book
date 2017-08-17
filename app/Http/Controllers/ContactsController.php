@@ -14,7 +14,7 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::orderBy('name', 'asc')->get();
 
         return view('contacts.index', compact('contacts'));
     }
@@ -37,7 +37,20 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email|unique:contacts'
+        ]);
+
+        Contact::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'user_id' => 8
+        ]);
+
+        return back()->withMessage('Contact saved successfully.');
     }
 
     /**

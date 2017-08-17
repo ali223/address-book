@@ -33,9 +33,9 @@
 
                 @foreach($contacts as $contact)
                   <tr>
-                    <td>{{$contact->name}}</td>
-                    <td>{{$contact->phone}}</td>
-                    <td>{{$contact->email}}</td>
+                    <td>{{ $contact->name }}</td>
+                    <td>{{ $contact->phone }}</td>
+                    <td>{{ $contact->email }}</td>
                     <td>
                       <a href="#">Edit</a> | 
                       <a href="#">Delete</a>
@@ -52,23 +52,45 @@
             <div class="panel-heading">
               <h4>Add a new Contact</h4>
             </div>
+
             <div class="panel-body">
-              <form>
+              <p>* Required Fields</p>
+
+              @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+                </div>
+              @endif
+
+              @if (session('message'))
+                <div class="alert alert-success">
+                  {{ session('message') }}
+                </div>
+              @endif
+
+              <form method="POST" action="{{ route('contacts.store') }}">
+                {{ csrf_field() }}
                 <div class="form-group">
-                  <label for="name">Name: </label>
-                  <input type="text" id="name" name="name" class="form-control">
+                  <label for="name">Name *: </label>
+                  <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
-                  <label for="phone">Phone: </label>
-                  <input type="text" id="phone" name="phone" class="form-control">
+                  <label for="phone">Phone *: </label>
+                  <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone') }}">
                 </div>
                 <div class="form-group">
-                  <label for="email">Email: </label>
-                  <input type="email" id="email" name="email"class="form-control">
+                  <label for="email">Email *: </label>
+                  <input type="text" id="email" name="email"class="form-control" value="{{ old('email') }}">
                 </div>
 
                 <button class="btn btn-primary btn-block">Save Contact</button>
+
               </form>
+
             </div>
           </div>
 
