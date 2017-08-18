@@ -18,7 +18,8 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th colspan="2">Actions</th>
+                <th>Added By</th>
+                <th>Actions</th>
               </tr>
 
               @foreach($contacts as $contact)
@@ -26,15 +27,16 @@
                   <td>{{ $contact->name }}</td>
                   <td>{{ $contact->phone }}</td>
                   <td>{{ $contact->email }}</td>
+                  <td>{{ $contact->user->name }}</td>
                   <td>
-                    <a href="{{ route('contacts.edit', $contact) }}">Edit</a> 
-                  </td>
-                  <td>
+                    <a href="{{ route('contacts.edit', $contact) }}">Edit</a>
+                    <br>
                     <form method="POST" action="{{ route('contacts.destroy', $contact)}}">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
                       <button type="submit" style="padding:0" class="btn btn-link">Delete</button>                        
                     </form>
+ 
                   </td>
                 </tr>
               @endforeach
