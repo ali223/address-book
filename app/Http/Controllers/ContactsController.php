@@ -106,7 +106,7 @@ class ContactsController extends Controller
 
         return redirect()
             ->route('home')
-            ->with('updatemessage', 'Contact Updated Successfully');
+            ->with('mainMessage', 'Contact Updated Successfully');
         
     }
 
@@ -120,6 +120,7 @@ class ContactsController extends Controller
     {
         $contact->delete();
 
-        return back();
+        return back()
+            ->with('mainMessage', 'Contact Deleted Successfully');
     }
 }

@@ -18,9 +18,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          @if (session('updatemessage'))
+          @if (session('mainMessage'))
             <div class="alert alert-success">
-              {{ session('updatemessage') }}
+              {{ session('mainMessage') }}
             </div>
           @endif
           <div class="panel panel-primary">
