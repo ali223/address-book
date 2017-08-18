@@ -14,6 +14,7 @@
           </div>            
           <div class="panel-body">
             <table class="table table-striped table-hover">
+            
               <tr>
                 <th>Name</th>
                 <th>Phone</th>
