@@ -14,7 +14,7 @@
           </div>            
           <div class="panel-body">
             <table class="table table-striped table-hover">
-            
+
               <tr>
                 <th>Name</th>
                 <th>Phone</th>
@@ -24,6 +24,7 @@
               </tr>
 
               @foreach($contacts as $contact)
+              
                 <tr>
                   <td>{{ $contact->name }}</td>
                   <td>{{ $contact->phone }}</td>
