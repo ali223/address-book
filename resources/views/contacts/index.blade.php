@@ -18,6 +18,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
+          @if (session('updatemessage'))
+            <div class="alert alert-success">
+              {{ session('updatemessage') }}
+            </div>
+          @endif
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h4>Contacts List</h4>
@@ -37,7 +42,7 @@
                     <td>{{ $contact->phone }}</td>
                     <td>{{ $contact->email }}</td>
                     <td>
-                      <a href="#">Edit</a> 
+                      <a href="{{ route('contacts.edit', $contact) }}">Edit</a> 
                     </td>
                     <td>
                       <form method="POST" action="{{ route('contacts.destroy', $contact)}}">

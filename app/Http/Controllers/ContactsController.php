@@ -70,9 +70,9 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contact $contact)
     {
-        //
+        return view('contacts.edit', compact('contact'));
     }
 
     /**
@@ -82,9 +82,32 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email'
+        ]);
+
+        if($request->name != $contact->name) {
+            $contact->name = $request->name;
+        }
+
+        if($request->phone != $contact->phone) {
+            $contact->phone = $request->phone;
+        }
+
+        if($request->email != $contact->email) {
+            $contact->email = $request->email;
+        }
+
+        $contact->save();
+
+        return redirect()
+            ->route('home')
+            ->with('updatemessage', 'Contact Updated Successfully');
+        
     }
 
     /**
