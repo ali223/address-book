@@ -22,3 +22,9 @@ Route::delete('/contacts/{contact}', 'ContactsController@destroy')->name('contac
 Route::get('/contacts/{contact}', 'ContactsController@edit')->name('contacts.edit');
 
 Route::patch('/contacts/{contact}', 'ContactsController@update')->name('contacts.update');
+
+Route::get('/sessions', 'SessionsController@create')->name('sessions.create');
+
+Route::post('/sessions', 'SessionsController@store')->name('sessions.store');
+
+Route::get('/sessions/logout', 'SessionsController@logout')->name('sessions.logout');

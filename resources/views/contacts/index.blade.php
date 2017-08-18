@@ -5,11 +5,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        @if (session('mainMessage'))
-          <div class="alert alert-success">
-            {{ session('mainMessage') }}
-          </div>
-        @endif
+
+        @include('layouts.mainmessage')
+        
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h4>Contacts List</h4>
